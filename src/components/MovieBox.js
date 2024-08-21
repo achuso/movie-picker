@@ -1,4 +1,3 @@
-// src/components/MovieBox.js
 import React from 'react';
 import './MovieBox.css';
 
