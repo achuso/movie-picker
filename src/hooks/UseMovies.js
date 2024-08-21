@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 
-// https://www.omdbapi.com/
 const API_KEY = '5a5bdff6';
 
 const useMovies = (query, sortOrder) => {
@@ -12,16 +11,13 @@ const useMovies = (query, sortOrder) => {
       if (query) {
         setLoading(true);
         try {
-          const response = await fetch(`https://www.omdbapi.com/?s=${query}&apikey=${API_KEY}&`);
+          const response = await fetch(`https://www.omdbapi.com/?s=${query}&apikey=${API_KEY}`);
           const data = await response.json();
-          console.log(data);
           setMovies(data.Search || []);
-        } 
-        catch (error) {
+        } catch (error) {
           console.error('Error:', error);
           setMovies([]);
-        } 
-        finally {
+        } finally {
           setLoading(false);
         }
       }
@@ -31,8 +27,7 @@ const useMovies = (query, sortOrder) => {
   }, [query]);
 
   const sortedMovies = [...movies].sort((a, b) => {
-    if (sortOrder === 'asc')
-      return a.Title.localeCompare(b.Title);
+    if (sortOrder === 'asc') return a.Title.localeCompare(b.Title);
     return b.Title.localeCompare(a.Title);
   });
 

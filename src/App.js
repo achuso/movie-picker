@@ -1,47 +1,34 @@
 import React, { useState } from 'react';
-import PickMovies from './PickMovies';
+import UseMovies from './hooks/UseMovies';
+import SearchForm from './components/SearchForm';
+import MovieList from './components/MovieList';
+import SortButton from './components/SortButton';
 import './App.css';
 
 const App = () => {
-  const [query, setQuery] = useState(''); 
+  const [query, setQuery] = useState('');
   const [sortOrder, setSortOrder] = useState('asc');
 
-  const { movies, loading } = PickMovies(query, sortOrder);
+  const { movies, loading } = UseMovies(query, sortOrder);
 
-  const handleSearch = (event) => {
-    event.preventDefault();
-    setQuery(event.target.elements.query.value);
+  const handleSearch = (newQuery) => {
+    setQuery(newQuery);
   };
 
   const handleSort = () => {
-    setSortOrder(prevSortOrder => (prevSortOrder === 'asc' ? 'desc' : 'asc'));
+    setSortOrder((prevSortOrder) => (prevSortOrder === 'asc' ? 'desc' : 'asc'));
   };
 
   return (
     <div className="App">
       <h1>Movie Search</h1>
-      <form onSubmit={handleSearch}>
-        <input type="text" name="query" placeholder="Search for movies..." />
-        <button type="submit">Search</button>
-      </form>
-	  <br></br>
-      <button onClick={handleSort}>
-        Sort {sortOrder === 'asc' ? 'Non-Alphabetically' : 'Alphabetically'}
-      </button>
+      <SearchForm onSearch={handleSearch} />
+      <br />
+      <SortButton sortOrder={sortOrder} onSort={handleSort} />
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <ul>
-          {movies.map((movie) => (
-            <li key={movie.imdbID}>
-              <strong>{movie.Title}</strong> ({movie.Year})
-              &nbsp;
-              <a href={`https://www.imdb.com/title/${movie.imdbID}`} target="_blank" rel="noreferrer">
-                IMDB Page
-              </a>
-            </li>
-          ))}
-        </ul>
+        <MovieList movies={movies} />
       )}
     </div>
   );
