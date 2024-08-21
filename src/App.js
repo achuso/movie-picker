@@ -23,17 +23,6 @@ const App = () => {
     setSortOrder((prevSortOrder) => (prevSortOrder === 'asc' ? 'desc' : 'asc'));
   };
 
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <App/>
-    },
-    {
-      path: "movies/:imdbID",
-      element: <MovieBox/>,
-    },
-  ]);
-
   return (
     <div className="App">
       <h1>Movie Search</h1>
