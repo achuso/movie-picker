@@ -1,11 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './MovieBox.css';
 
 const MovieBox = ({ movie }) => {
   const { Title, Year, Poster, Actors, Director, imdbID } = movie;
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    window.open(`https://www.imdb.com/title/${imdbID}`, '_blank', 'noopener,noreferrer');
+    //window.open(`https://www.imdb.com/title/${imdbID}`, '_blank', 'noopener,noreferrer');
+    navigate(`/movie/${imdbID}`, { state: { movie } });
   };
 
   return (
