@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import {createBrowserRouter} from 'react-router-dom';
+
 import useMovies from './hooks/UseMovies';
 import SearchForm from './components/SearchForm';
 import MovieList from './components/MovieList';
 import SortButton from './components/SortButton';
+
 import './App.css';
+import MovieBox from './components/MovieBox';
 
 const App = () => {
   const [query, setQuery] = useState('');
@@ -18,6 +22,17 @@ const App = () => {
   const handleSort = () => {
     setSortOrder((prevSortOrder) => (prevSortOrder === 'asc' ? 'desc' : 'asc'));
   };
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <App/>
+    },
+    {
+      path: "movies/:imdbID",
+      element: <MovieBox/>,
+    },
+  ]);
 
   return (
     <div className="App">
