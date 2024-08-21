@@ -10,25 +10,42 @@
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   
-.movie-box img {
+  .movie-box:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .movie-box img {
     width: 100%;
     height: auto;
     border-radius: 4px;
-}
-
-.movie-details {
+  }
+  
+  .movie-details {
     margin-top: 10px;
     text-align: center;
-}
-
-.movie-details h3 {
-font-size: 1.2em;
-margin: 0.5em 0;
-}
-
-.movie-details p {
+  }
+  
+  .movie-details h3 {
+    font-size: 1.2em;
+    margin: 0.5em 0;
+  }
+  
+  .movie-details p {
     margin: 0.2em 0;
     font-size: 0.9em;
-}
+  }
+  
+  .movie-details a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .movie-details a:hover {
+    text-decoration: underline;
+  }
+  
