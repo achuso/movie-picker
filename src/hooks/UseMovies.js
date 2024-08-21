@@ -35,7 +35,7 @@ const useMovies = (query, sortOrder) => {
     fetchMovies();
   }, [query]);
 
-  const sortedMovies = [...movies].sort((a, b) => {
+  const sortedMovies = movies.sort((a, b) => {
     if (sortOrder === 'asc') return a.Title.localeCompare(b.Title);
     return b.Title.localeCompare(a.Title);
   });
