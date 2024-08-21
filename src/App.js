@@ -6,31 +6,23 @@ import useMovies from './hooks/UseMovies';
 import SearchForm from './components/SearchForm';
 import MovieList from './components/MovieList';
 import SortButton from './components/SortButton';
-import MovieDetails from './components/MovieDetails'; // Import the MovieDetails component
+import MovieDetails from './components/MovieDetails';
 
 import './App.css';
 
 const App = () => {
   const [query, setQuery] = useState('');
   const [sortOrder, setSortOrder] = useState('asc');
-
+  
   const { movies, loading } = useMovies(query, sortOrder);
-
-  const handleSearch = (newQuery) => {
-    setQuery(newQuery);
-  };
-
-  const handleSort = () => {
-    setSortOrder((prevSortOrder) => (prevSortOrder === 'asc' ? 'desc' : 'asc'));
-  };
 
   return (
     <Router>
       <div className="App">
         <h1>Movie Search</h1>
-        <SearchForm onSearch={handleSearch} />
+        <SearchForm onSearch={setQuery} />
         <br />
-        <SortButton sortOrder={sortOrder} onSort={handleSort} />
+        <SortButton sortOrder={sortOrder} onSort={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')} />
         <br />
         {loading ? (
           <p>Loading...</p>
