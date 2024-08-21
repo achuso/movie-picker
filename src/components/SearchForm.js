@@ -8,7 +8,7 @@ const SearchForm = ({ onSearch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSearch(searchTerm);
-    navigate('/'); // Navigate back to the movie list
+    navigate('/');
   };
 
   return (
