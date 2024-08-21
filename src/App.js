@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState } from 'react';
 import useMovies from './hooks/UseMovies';
 import SearchForm from './components/SearchForm';
