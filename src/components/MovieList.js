@@ -1,18 +1,15 @@
+// src/components/MovieList.js
 import React from 'react';
+import MovieBox from './MovieBox';
+import './MovieList.css';
 
 const MovieList = ({ movies }) => {
   return (
-    <ul>
+    <div className="movie-list">
       {movies.map((movie) => (
-        <li key={movie.imdbID}>
-          <strong>{movie.Title}</strong> ({movie.Year})
-          &nbsp;
-          <a href={`https://www.imdb.com/title/${movie.imdbID}`} target="_blank" rel="noreferrer">
-            IMDB Page
-          </a>
-        </li>
+        <MovieBox key={movie.imdbID} movie={movie} />
       ))}
-    </ul>
+    </div>
   );
 };
 

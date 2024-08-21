@@ -7,13 +7,22 @@ const useMovies = (query, sortOrder) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const fetchMovieDetails = async (imdbID) => {
+      const response = await fetch(`https://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}`);
+      const data = await response.json();
+      return data;
+    };
+
     const fetchMovies = async () => {
       if (query) {
         setLoading(true);
         try {
           const response = await fetch(`https://www.omdbapi.com/?s=${query}&apikey=${API_KEY}`);
           const data = await response.json();
-          setMovies(data.Search || []);
+          const movieDetails = await Promise.all(
+            (data.Search || []).map((movie) => fetchMovieDetails(movie.imdbID))
+          );
+          setMovies(movieDetails);
         } catch (error) {
           console.error('Error:', error);
           setMovies([]);
