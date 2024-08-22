@@ -7,12 +7,6 @@ const useMovies = (query, sortOrder) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchMovieDetails = async (imdbID) => {
-      const response = await fetch(`https://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}`);
-      const data = await response.json();
-      return data;
-    };
-
     const fetchMovies = async () => {
       if (query) {
         setLoading(true);
@@ -30,6 +24,12 @@ const useMovies = (query, sortOrder) => {
           setLoading(false);
         }
       }
+    };
+
+    const fetchMovieDetails = async (imdbID) => {
+      const response = await fetch(`https://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}`);
+      const data = await response.json();
+      return data;
     };
 
     fetchMovies();

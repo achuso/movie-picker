@@ -1,10 +1,12 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import './MovieDetails.css'; // Import the CSS file
+
+import './MovieDetails.css';
 
 const MovieDetails = () => {
   const location = useLocation();
   const { movie } = location.state;
+  //console.log(location.state);
 
   return (
     <div className="movie-details-container">
