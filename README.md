@@ -1,3 +1,4 @@
-# Lorem ipsum
+Learning React.js, application to display movie details from OMDb API
 
-Trying to learn React.js, nothing special
+To run locally:
+> npm start
